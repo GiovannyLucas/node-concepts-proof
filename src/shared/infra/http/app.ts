@@ -3,7 +3,11 @@ import express from 'express';
 import cors from 'cors';
 import { createConnection } from 'typeorm';
 
-createConnection();
+const typeormConnection = createConnection();
+
+typeormConnection.then((connection) => {
+  connection.runMigrations();
+})
 
 const app = express();
 
