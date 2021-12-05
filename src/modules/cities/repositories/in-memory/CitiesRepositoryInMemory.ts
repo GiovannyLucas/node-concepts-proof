@@ -29,8 +29,7 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
 
   async find(
     { limit, offset }: IValidPaginationParams,
-    name?: string,
-    state?: string,
+    { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
     const total = this.cities.length;
     const citiesFiltered: City[] = this.cities.filter(

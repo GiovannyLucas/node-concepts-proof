@@ -7,8 +7,7 @@ export interface ICitiesRepository {
   create(cityToCreate: CreateCityDTO): Promise<City>;
   find(
     pagination: IValidPaginationParams,
-    name?: string,
-    state?: string,
+    filters?: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }>;
   showById(id: string): Promise<City | undefined>;
   findByState(state: string): Promise<City[]>;

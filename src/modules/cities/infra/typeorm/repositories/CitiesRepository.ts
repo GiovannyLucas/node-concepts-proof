@@ -29,11 +29,10 @@ export class CitiesRepository implements ICitiesRepository {
 
   async find(
     { limit, offset }: IValidPaginationParams,
-    name?: string,
-    state?: string,
+    { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
     const citiesQuery = this.repository
-      .createQueryBuilder('cities')
+      .createQueryBuilder()
       .skip(offset)
       .take(limit);
 

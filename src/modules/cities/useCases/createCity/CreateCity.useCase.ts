@@ -8,7 +8,7 @@ import { ICitiesRepository } from '../../repositories/ICitiesRepository';
 @injectable()
 export class CreateCityUseCase {
   constructor(
-    @inject('CitiesRepository')
+    @inject('CITIES_REPOSITORY')
     private citiesRepository: ICitiesRepository,
   ) {}
 

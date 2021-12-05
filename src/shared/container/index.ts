@@ -4,6 +4,6 @@ import { CitiesRepository } from '../../modules/cities/infra/typeorm/repositorie
 import { ICitiesRepository } from '../../modules/cities/repositories/ICitiesRepository';
 
 container.registerSingleton<ICitiesRepository>(
-  'CitiesRepository',
+  'CITIES_REPOSITORY',
   CitiesRepository,
 );
