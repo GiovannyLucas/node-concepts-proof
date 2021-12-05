@@ -1,0 +1,6 @@
+export enum ErrorCodesHttp {
+  INTERNAL_SERVER = 500,
+  BAD_REQUEST = 400,
+  CONFLICT = 409,
+  UNPROCESSABLE_ENTITY = 422,
+}
