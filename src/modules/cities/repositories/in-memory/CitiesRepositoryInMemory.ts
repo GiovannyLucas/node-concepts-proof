@@ -1,3 +1,4 @@
+import { PaginationParamsValidate } from 'shared/validators/paginationParams';
 import { v4 as uuid } from 'uuid';
 
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
@@ -28,7 +29,17 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
     state?: string,
     pagination?: PaginationDTO,
   ): Promise<{ cities: City[]; total: number }> {
-    throw new Error('Method not implemented.');
+    const total = this.cities.length;
+    const citiesFiltered: City[] = this.cities.filter(
+      (city) =>
+        city.state.includes(state || '') && city.name.includes(name || ''),
+    );
+
+    const { offset, amount } = PaginationParamsValidate.handle(pagination);
+
+    const cities = citiesFiltered.slice(offset, amount);
+
+    return { cities, total };
   }
 
   async showById(id: string): Promise<City | undefined> {
