@@ -1,3 +1,7 @@
+import {
+  IValidPaginationParams,
+  PaginationParamsValidate,
+} from 'shared/validators/paginationParams';
 import { v4 as uuid } from 'uuid';
 
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
@@ -24,11 +28,17 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   }
 
   async find(
-    name?: string,
-    state?: string,
-    pagination?: PaginationDTO,
+    { limit, offset }: IValidPaginationParams,
+    { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
-    throw new Error('Method not implemented.');
+    const citiesFiltered: City[] = this.cities.filter(
+      (city) =>
+        city.state.includes(state || '') && city.name.includes(name || ''),
+    );
+
+    const cities = citiesFiltered.slice(offset, limit);
+
+    return { cities, total: citiesFiltered.length };
   }
 
   async showById(id: string): Promise<City | undefined> {
@@ -40,8 +50,6 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {
-    console.log(this.cities);
-
     const cityAlreadyExistsInState = this.cities.some(
       (city) => city.name === name && city.state === state,
     );

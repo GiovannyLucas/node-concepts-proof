@@ -1,3 +1,7 @@
+import {
+  IValidPaginationParams,
+  PaginationParamsValidate,
+} from 'shared/validators/paginationParams';
 import { getRepository, Repository } from 'typeorm';
 
 import { CreateCityDTO } from '../../../dtos/CreateCityDTO';
@@ -24,11 +28,29 @@ export class CitiesRepository implements ICitiesRepository {
   }
 
   async find(
-    name?: string,
-    state?: string,
-    pagination?: PaginationDTO,
+    { limit, offset }: IValidPaginationParams,
+    { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
-    throw new Error('Method not implemented.');
+    const nameCaseWhere = `CASE
+        WHEN (:name = '%%') THEN TRUE
+        ELSE name ILIKE :name
+      END`;
+
+    const stateCaseWhere = `CASE
+        WHEN (:state = '%%') THEN TRUE
+        ELSE state ILIKE :state
+      END`;
+
+    const [cities, total] = await this.repository
+      .createQueryBuilder()
+      .where(nameCaseWhere, { name: `%${name || ''}%` })
+      .andWhere(stateCaseWhere, { state: `%${state || ''}%` })
+      .skip(offset)
+      .take(limit)
+      .orderBy({ name: 'ASC', state: 'ASC' })
+      .getManyAndCount();
+
+    return { cities, total };
   }
 
   async showById(id: string): Promise<City | undefined> {
