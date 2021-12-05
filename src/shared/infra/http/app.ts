@@ -5,7 +5,7 @@ import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 
 import { AppError } from '../../errors/AppError';
-import { ErrorCodesHttp } from '../../errors/ErrorCodesHttp';
+import { HttpCodes } from '../../errors/HttpCodes';
 import createConnection from '../typeorm';
 import { router } from './routes';
 
@@ -28,8 +28,8 @@ app.use((error: Error, _: Request, response: Response, __: NextFunction) => {
     });
   }
 
-  return response.status(ErrorCodesHttp.INTERNAL_SERVER).json({
-    statusCode: ErrorCodesHttp.INTERNAL_SERVER,
+  return response.status(HttpCodes.INTERNAL_SERVER).json({
+    statusCode: HttpCodes.INTERNAL_SERVER,
     message: `Internal Server Error: ${error.message}`,
   });
 });

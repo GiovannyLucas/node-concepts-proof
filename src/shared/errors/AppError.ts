@@ -1,12 +1,12 @@
-import { ErrorCodesHttp } from './ErrorCodesHttp';
+import { HttpCodes } from './HttpCodes';
 
 export class AppError {
   public readonly description: string;
-  public readonly statusCode: ErrorCodesHttp;
+  public readonly statusCode: HttpCodes;
 
   constructor(
     description: string,
-    statusCode: ErrorCodesHttp = ErrorCodesHttp.BAD_REQUEST,
+    statusCode: HttpCodes = HttpCodes.BAD_REQUEST,
   ) {
     this.description = description;
     this.statusCode = statusCode;

@@ -9,6 +9,10 @@ export class CreateCityController {
 
     const createCityUseCase = container.resolve(CreateCityUseCase);
 
+    // TODO: finalizar implantação do AppError
+    // TODO: adicionar validação do YUP
+    // TODO: atualizar requisitos no README
+
     const city = await createCityUseCase.execute({ name, state });
 
     return response.status(201).json(city);

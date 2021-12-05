@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '../../../../shared/errors/AppError';
-import { ErrorCodesHttp } from '../../../../shared/errors/ErrorCodesHttp';
+import { HttpCodes } from '../../../../shared/errors/HttpCodes';
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
 import { ICitiesRepository } from '../../repositories/ICitiesRepository';
 
@@ -19,17 +19,14 @@ export class CreateCityUseCase {
     if (CITY_ALREADY_EXISTS_IN_STATE) {
       throw new AppError(
         'This city already exists in the state.',
-        ErrorCodesHttp.CONFLICT,
+        HttpCodes.CONFLICT,
       );
     }
 
     const city = await this.citiesRepository.create({ name, state });
 
-    if (!city) {
-      throw new AppError(
-        'Internal server error.',
-        ErrorCodesHttp.INTERNAL_SERVER,
-      );
+    if (!Object.keys(city).length) {
+      throw new AppError('Error to create the city', HttpCodes.INTERNAL_SERVER);
     }
 
     return city;
