@@ -31,7 +31,6 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
     { limit, offset }: IValidPaginationParams,
     { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
-    const total = this.cities.length;
     const citiesFiltered: City[] = this.cities.filter(
       (city) =>
         city.state.includes(state || '') && city.name.includes(name || ''),
@@ -39,7 +38,7 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
 
     const cities = citiesFiltered.slice(offset, limit);
 
-    return { cities, total };
+    return { cities, total: citiesFiltered.length };
   }
 
   async showById(id: string): Promise<City | undefined> {
@@ -51,8 +50,6 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {
-    console.log(this.cities);
-
     const cityAlreadyExistsInState = this.cities.some(
       (city) => city.name === name && city.state === state,
     );

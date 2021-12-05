@@ -31,20 +31,22 @@ export class CitiesRepository implements ICitiesRepository {
     { limit, offset }: IValidPaginationParams,
     { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
-    const citiesQuery = this.repository
+    const nameCaseWhere = `CASE
+        WHEN (:name = '%%') THEN TRUE
+        ELSE name ILIKE :name
+      END`;
+
+    const stateCaseWhere = `CASE
+        WHEN (:state = '%%') THEN TRUE
+        ELSE state ILIKE :state
+      END`;
+
+    const [cities, total] = await this.repository
       .createQueryBuilder()
+      .where(nameCaseWhere, { name: `%${name || ''}%` })
+      .andWhere(stateCaseWhere, { state: `%${state || ''}%` })
       .skip(offset)
-      .take(limit);
-
-    if (name) {
-      citiesQuery.where('name ILIKE :name', { name: `%${name}%` });
-    }
-
-    if (state) {
-      citiesQuery.where('state ILIKE :state', { state: `%${state}%` });
-    }
-
-    const [cities, total] = await citiesQuery
+      .take(limit)
       .orderBy({ name: 'ASC', state: 'ASC' })
       .getManyAndCount();
 
