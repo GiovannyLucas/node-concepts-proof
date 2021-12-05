@@ -9,8 +9,8 @@ export class CreateCities1638579940393 implements MigrationInterface {
         uniques: [
           {
             columnNames: ['name', 'state'],
-            name: 'city-state-unique'
-          }
+            name: 'city-state-unique',
+          },
         ],
         columns: [
           {
@@ -42,7 +42,7 @@ export class CreateCities1638579940393 implements MigrationInterface {
             default: 0,
           },
         ],
-      })
+      }),
     );
   }
 

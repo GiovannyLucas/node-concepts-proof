@@ -1,8 +1,8 @@
-import { CreateCityDTO } from 'modules/cities/dtos/CreateCityDTO';
-import { PaginationDTO } from 'modules/cities/dtos/PaginationDTO';
-import { ICitiesRepository } from 'modules/cities/repositories/ICitiesRepository';
 import { getRepository, Repository } from 'typeorm';
 
+import { CreateCityDTO } from '../../../dtos/CreateCityDTO';
+import { PaginationDTO } from '../../../dtos/PaginationDTO';
+import { ICitiesRepository } from '../../../repositories/ICitiesRepository';
 import { City } from '../entities/City';
 
 export class CitiesRepository implements ICitiesRepository {
@@ -40,13 +40,11 @@ export class CitiesRepository implements ICitiesRepository {
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {
-    const cityAlreadyExistsInState = await this.repository.query(
-      'SELECT TOP 1 id FROM public.city WHERE state = $1 AND name = $2',
+    const [{ exists: cityAlreadyExistsInState }] = await this.repository.query(
+      'SELECT EXISTS(SELECT 1 FROM public.cities WHERE state = $1 AND name = $2)',
       [state, name],
     );
 
-    console.log(cityAlreadyExistsInState);
-
-    return false;
+    return cityAlreadyExistsInState;
   }
 }

@@ -24,7 +24,7 @@ export class CreateClients1638585460955 implements MigrationInterface {
             name: 'gender',
             type: 'varchar',
             enum: ['F', 'M'],
-            enumName: 'gender-enum'
+            enumName: 'gender-enum',
           },
           {
             name: 'born_date',
@@ -60,7 +60,7 @@ export class CreateClients1638585460955 implements MigrationInterface {
             onUpdate: 'CASCADE',
           },
         ],
-      })
+      }),
     );
   }
 

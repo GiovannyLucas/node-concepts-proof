@@ -9,13 +9,16 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   cities: City[] = [];
 
   async create({ name, state }: CreateCityDTO): Promise<City> {
+    if (!name || !state) return {} as City;
+
     const city = new City();
     city.id = uuid();
     city.name = name;
     city.state = state;
     city.created_at = new Date();
+    city.version = 0;
 
-    this.cities.push();
+    this.cities.push(city);
 
     return city;
   }
@@ -37,6 +40,12 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+    console.log(this.cities);
+
+    const cityAlreadyExistsInState = this.cities.some(
+      (city) => city.name === name && city.state === state,
+    );
+
+    return cityAlreadyExistsInState;
   }
 }
