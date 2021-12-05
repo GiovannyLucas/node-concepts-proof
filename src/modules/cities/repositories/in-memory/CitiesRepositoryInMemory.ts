@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
 import { PaginationDTO } from '../../dtos/PaginationDTO';
 import { City } from '../../infra/typeorm/entities/City';
@@ -19,11 +20,15 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
     return city;
   }
 
-  async find(name?: string, state?: string, pagination?: PaginationDTO): Promise<{ cities: City[]; total: number; }> {
+  async find(
+    name?: string,
+    state?: string,
+    pagination?: PaginationDTO,
+  ): Promise<{ cities: City[]; total: number }> {
     throw new Error('Method not implemented.');
   }
-  
-  async showById(id: string): Promise<City> {
+
+  async showById(id: string): Promise<City | undefined> {
     throw new Error('Method not implemented.');
   }
 

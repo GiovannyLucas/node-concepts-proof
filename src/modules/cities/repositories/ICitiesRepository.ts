@@ -9,7 +9,7 @@ export interface ICitiesRepository {
     state?: string,
     pagination?: PaginationDTO,
   ): Promise<{ cities: City[]; total: number }>;
-  showById(id: string): Promise<City>;
+  showById(id: string): Promise<City | undefined>;
   findByState(state: string): Promise<City[]>;
   existsByNameAndState(name: string, state: string): Promise<boolean>;
 }
