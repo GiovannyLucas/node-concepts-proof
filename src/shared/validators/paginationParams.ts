@@ -5,23 +5,23 @@ export interface IValidPaginationParams {
 
 export class PaginationParamsValidate {
   public static handle(
-    params: { amount: number; page: number } | undefined,
+    limit?: number | string | undefined,
+    page?: number | string | undefined,
   ): IValidPaginationParams {
-    if (!params) {
+    if (!limit && !page) {
       return {
         offset: 0,
         limit: 10,
       };
     }
 
-    const amountValidated =
-      !params.amount || params.amount <= 0 ? 10 : params.amount;
-    const pageValidated = !params.page || params.page <= 0 ? 1 : params.amount;
-
     const TIMES_TO_SKIP_PAGINATION = 1;
+    const amountValidated = !limit || +limit <= 0 ? 10 : +limit;
+    const pageValidated =
+      !page || +page <= 0 ? 1 : +page - TIMES_TO_SKIP_PAGINATION;
 
     return {
-      offset: (pageValidated - TIMES_TO_SKIP_PAGINATION) * amountValidated,
+      offset: pageValidated * amountValidated,
       limit: amountValidated,
     };
   }

@@ -1,7 +1,7 @@
 import { CitiesRepositoryInMemory } from '../../repositories/in-memory/CitiesRepositoryInMemory';
 import { FindCitiesUseCase } from './FindCities.useCase';
 
-describe('Create City Use Case', () => {
+describe('Find Cities Use Case', () => {
   let citiesRepositoryInMemory: CitiesRepositoryInMemory;
   let findCitiesUseCase: FindCitiesUseCase;
 
@@ -56,27 +56,27 @@ describe('Create City Use Case', () => {
       },
     );
 
-    expect(total).toBe(2);
+    expect(total).toBe(1);
     expect(cities.length).toBe(1);
     expect(cities[0].state).toBe(stateToFilter);
   });
 
   it('should be able list the cities passing a name', async () => {
-    const cityToFilter = 'São Miguel';
+    const cityToFilter = 'Santa Inês';
 
     await citiesRepositoryInMemory.create({
       name: cityToFilter,
-      state: 'Rio Grande do Norte',
+      state: 'Bahia',
     });
 
     await citiesRepositoryInMemory.create({
-      name: 'Gramado',
-      state: 'Rio Grande do Sul',
+      name: cityToFilter,
+      state: 'Paraná',
     });
 
     const { cities, total } = await findCitiesUseCase.execute(
       {
-        limit: 10,
+        limit: 1,
         offset: 0,
       },
       {
@@ -113,7 +113,7 @@ describe('Create City Use Case', () => {
       },
     );
 
-    expect(total).toBe(2);
+    expect(total).toBe(1);
     expect(cities.length).toBe(1);
     expect(cities[0].name).toBe(cityToFilter);
     expect(cities[0].state).toBe(stateToFilter);

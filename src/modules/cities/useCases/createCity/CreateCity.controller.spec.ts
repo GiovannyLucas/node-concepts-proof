@@ -7,8 +7,6 @@ import { app } from '../../../../shared/infra/http/app';
 import createConnection from '../../../../shared/infra/typeorm';
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
 
-// const ormOptions = require('../../../../../ormconfig');
-
 describe('Create City Controller', () => {
   let connection: Connection;
 
