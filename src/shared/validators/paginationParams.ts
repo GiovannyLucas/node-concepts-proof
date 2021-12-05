@@ -1,9 +1,16 @@
+export interface IValidPaginationParams {
+  offset: number;
+  limit: number;
+}
+
 export class PaginationParamsValidate {
-  public static handle(params: { amount: number; page: number } | undefined) {
+  public static handle(
+    params: { amount: number; page: number } | undefined,
+  ): IValidPaginationParams {
     if (!params) {
       return {
         offset: 0,
-        amount: 10,
+        limit: 10,
       };
     }
 

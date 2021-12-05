@@ -1,4 +1,7 @@
-import { PaginationParamsValidate } from 'shared/validators/paginationParams';
+import {
+  IValidPaginationParams,
+  PaginationParamsValidate,
+} from 'shared/validators/paginationParams';
 import { v4 as uuid } from 'uuid';
 
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
@@ -25,9 +28,9 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   }
 
   async find(
+    { limit, offset }: IValidPaginationParams,
     name?: string,
     state?: string,
-    pagination?: PaginationDTO,
   ): Promise<{ cities: City[]; total: number }> {
     const total = this.cities.length;
     const citiesFiltered: City[] = this.cities.filter(
@@ -35,9 +38,7 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
         city.state.includes(state || '') && city.name.includes(name || ''),
     );
 
-    const { offset, amount } = PaginationParamsValidate.handle(pagination);
-
-    const cities = citiesFiltered.slice(offset, amount);
+    const cities = citiesFiltered.slice(offset, limit);
 
     return { cities, total };
   }

@@ -1,13 +1,14 @@
+import { IValidPaginationParams } from 'shared/validators/paginationParams';
+
 import { CreateCityDTO } from '../dtos/CreateCityDTO';
-import { PaginationDTO } from '../dtos/PaginationDTO';
 import { City } from '../infra/typeorm/entities/City';
 
 export interface ICitiesRepository {
   create(cityToCreate: CreateCityDTO): Promise<City>;
   find(
+    pagination: IValidPaginationParams,
     name?: string,
     state?: string,
-    pagination?: PaginationDTO,
   ): Promise<{ cities: City[]; total: number }>;
   showById(id: string): Promise<City | undefined>;
   findByState(state: string): Promise<City[]>;
