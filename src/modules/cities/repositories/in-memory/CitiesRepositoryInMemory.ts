@@ -14,6 +14,7 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
     city.name = name;
     city.state = state;
     city.created_at = new Date();
+    city.version = 0;
 
     this.cities.push();
 
@@ -37,6 +38,10 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+    const cityAlreadyExistsInState = this.cities.some(
+      (city) => city.name === name && city.state === state,
+    );
+
+    return cityAlreadyExistsInState;
   }
 }
