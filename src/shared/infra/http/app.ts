@@ -1,13 +1,15 @@
 import 'dotenv/config';
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import { createConnection } from 'typeorm';
+
+import '../../container';
 
 const typeormConnection = createConnection();
 
 typeormConnection.then((connection) => {
   connection.runMigrations();
-})
+});
 
 const app = express();
 
