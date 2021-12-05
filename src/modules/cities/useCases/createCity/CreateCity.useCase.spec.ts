@@ -1,9 +1,8 @@
-import { CreateCityDTO } from 'modules/cities/dtos/CreateCityDTO';
-
+import { CreateCityDTO } from '../../dtos/CreateCityDTO';
 import { CitiesRepositoryInMemory } from '../../repositories/in-memory/CitiesRepositoryInMemory';
 import { CreateCityUseCase } from './CreateCity.useCase';
 
-describe('Create City', () => {
+describe('Create City Use Case', () => {
   let citiesRepositoryInMemory: CitiesRepositoryInMemory;
   let createCityUseCase: CreateCityUseCase;
 
