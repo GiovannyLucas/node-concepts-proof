@@ -9,7 +9,7 @@
 
 | FR (functional requirements) | NFR (non-functional requirements) | OK |
 |------------------------------|-----------------------------------|----------------|
-| Deve ser possível cadastrar uma nova cidade ao informar corretamente os dados pedidos | | |
+| Deve ser possível cadastrar uma nova cidade ao informar corretamente os dados pedidos | | ✅ |
 | Não é possível cadastrar mais duas ou mais cidades com o mesmo nome e o mesmo estado | | |
 
 - Consultar cidade pelo nome e/ou estado
