@@ -13,7 +13,7 @@ export class CreateClients1638585460955 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'city_id',
+            name: 'city_living_id',
             type: 'uuid',
           },
           {

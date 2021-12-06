@@ -1,11 +1,7 @@
-import {
-  IValidPaginationParams,
-  PaginationParamsValidate,
-} from 'shared/validators/paginationParams';
+import { IValidPaginationParams } from 'shared/validators/paginationParams';
 import { getRepository, Repository } from 'typeorm';
 
 import { CreateCityDTO } from '../../../dtos/CreateCityDTO';
-import { PaginationDTO } from '../../../dtos/PaginationDTO';
 import { ICitiesRepository } from '../../../repositories/ICitiesRepository';
 import { City } from '../entities/City';
 

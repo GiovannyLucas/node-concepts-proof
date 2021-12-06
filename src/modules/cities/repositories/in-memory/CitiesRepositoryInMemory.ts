@@ -5,7 +5,6 @@ import {
 import { v4 as uuid } from 'uuid';
 
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
-import { PaginationDTO } from '../../dtos/PaginationDTO';
 import { City } from '../../infra/typeorm/entities/City';
 import { ICitiesRepository } from '../ICitiesRepository';
 
