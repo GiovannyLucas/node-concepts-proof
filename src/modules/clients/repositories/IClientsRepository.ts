@@ -10,6 +10,7 @@ export interface IClientsRepository {
     filters?: { name?: string },
   ): Promise<{ clients: Client[]; total: number }>;
   showById(id: string): Promise<Client | undefined>;
+  // adicionar parametro igual ao de filtro
   update(id: string): Promise<Client>;
   delete(id: string): Promise<boolean>;
 }

@@ -22,7 +22,7 @@ export class Client extends IBaseEntity {
   gender: 'M' | 'F';
 
   @Column({ type: 'date' })
-  born_date: 'M' | 'F';
+  born_date: Date;
 
   @Column({ type: 'integer' })
   age: number;
@@ -32,7 +32,7 @@ export class Client extends IBaseEntity {
 
   @ManyToOne(() => City, (city) => city.clients)
   @JoinColumn({ name: 'city_id' })
-  city: City;
+  city?: City;
 
   constructor() {
     super();

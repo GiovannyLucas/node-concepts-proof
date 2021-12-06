@@ -6,7 +6,7 @@ import { ICitiesRepository } from '../../../repositories/ICitiesRepository';
 import { City } from '../entities/City';
 
 export class CitiesRepository implements ICitiesRepository {
-  private repository: Repository<City>;
+  private readonly repository: Repository<City>;
 
   constructor() {
     this.repository = getRepository(City);
