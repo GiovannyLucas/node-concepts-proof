@@ -38,7 +38,7 @@
 
   | FR (functional requirements) | NFR (non-functional requirements) | OK |
   |------------------------------|-----------------------------------|----------------|
-  | Deve ser possível buscar clientes informando seu nome (ou parte) | Pode utilizar parametros de query para filtrar ou parâmetro de rota | |
+  | Deve ser possível buscar clientes informando seu nome (ou parte) | Pode utilizar parametros de query para filtrar ou parâmetro de rota | ✅ |
 </details>
 
 <details>

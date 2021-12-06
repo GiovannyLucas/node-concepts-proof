@@ -29,11 +29,17 @@ export class ClientsRepositoryInMemory implements IClientsRepository {
     return client;
   }
 
-  find(
-    pagination: IValidPaginationParams,
-    filters?: { name?: string | undefined },
+  async find(
+    { limit, offset }: IValidPaginationParams,
+    { name }: { name?: string },
   ): Promise<{ clients: Client[]; total: number }> {
-    throw new Error('Method not implemented.');
+    const clientsFiltered: Client[] = this.clients.filter((client) =>
+      client.full_name.includes(name || ''),
+    );
+
+    const clients = clientsFiltered.slice(offset, limit);
+
+    return { clients, total: clientsFiltered.length };
   }
 
   showById(id: string): Promise<Client | undefined> {
