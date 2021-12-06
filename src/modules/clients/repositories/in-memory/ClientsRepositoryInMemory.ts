@@ -1,8 +1,8 @@
-import { CreateClientDto } from 'modules/clients/dtos/CreateClientDTO';
-import { Client } from 'modules/clients/infra/typeorm/entities/Client';
-import { IValidPaginationParams } from 'shared/validators/paginationParams';
 import { v4 as uuid } from 'uuid';
 
+import { IValidPaginationParams } from '../../../../shared/validators/paginationParams';
+import { CreateClientDto } from '../../dtos/CreateClientDTO';
+import { Client } from '../../infra/typeorm/entities/Client';
 import { IClientsRepository } from '../IClientsRepository';
 
 export class ClientsRepositoryInMemory implements IClientsRepository {

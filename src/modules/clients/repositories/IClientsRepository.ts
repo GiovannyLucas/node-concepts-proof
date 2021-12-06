@@ -1,5 +1,4 @@
-import { IValidPaginationParams } from 'shared/validators/paginationParams';
-
+import { IValidPaginationParams } from '../../../shared/validators/paginationParams';
 import { CreateClientDto } from '../dtos/CreateClientDTO';
 import { Client } from '../infra/typeorm/entities/Client';
 

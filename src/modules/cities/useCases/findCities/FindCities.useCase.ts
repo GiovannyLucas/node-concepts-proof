@@ -1,6 +1,6 @@
-import { IValidPaginationParams } from 'shared/validators/paginationParams';
 import { inject, injectable } from 'tsyringe';
 
+import { IValidPaginationParams } from '../../../../shared/validators/paginationParams';
 import { ICitiesRepository } from '../../repositories/ICitiesRepository';
 
 @injectable()
