@@ -28,14 +28,14 @@ export class CitiesRepository implements ICitiesRepository {
     { state, name }: { state?: string; name?: string },
   ): Promise<{ cities: City[]; total: number }> {
     const nameCaseWhere = `CASE
-        WHEN (:name = '%%') THEN TRUE
-        ELSE name ILIKE :name
-      END`;
+      WHEN (:name = '%%') THEN TRUE
+      ELSE name ILIKE :name
+    END`;
 
     const stateCaseWhere = `CASE
-        WHEN (:state = '%%') THEN TRUE
-        ELSE state ILIKE :state
-      END`;
+      WHEN (:state = '%%') THEN TRUE
+      ELSE state ILIKE :state
+    END`;
 
     const [cities, total] = await this.repository
       .createQueryBuilder()

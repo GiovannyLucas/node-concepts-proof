@@ -34,9 +34,9 @@ export class ClientsRepository implements IClientsRepository {
     { name }: { name?: string },
   ): Promise<{ clients: Client[]; total: number }> {
     const nameCaseWhere = `CASE
-        WHEN (:name = '%%') THEN TRUE
-        ELSE full_name ILIKE :name
-      END`;
+      WHEN (:name = '%%') THEN TRUE
+      ELSE full_name ILIKE :name
+    END`;
 
     const [clients, total] = await this.repository
       .createQueryBuilder('clients')
