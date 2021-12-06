@@ -38,7 +38,7 @@ describe('Show Client By Id Use Case', () => {
     expect(client?.id).toBe(id);
   });
 
-  it('should be able list the clients passing a name', async () => {
+  it('should not be able to show a client who dont exists', async () => {
     const randomClientId = uuid();
 
     const showClient = showClientByIdUseCase.execute(randomClientId);
