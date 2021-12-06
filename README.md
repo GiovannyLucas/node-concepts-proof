@@ -55,6 +55,7 @@
   | FR (functional requirements) | NFR (non-functional requirements) | OK |
   |------------------------------|-----------------------------------|----------------|
   | Deve ser possível remover um cliente informando seu identificador | Utilizar parâmetros de rota | |
+  | Não será possível remover um cliente cujo não seja identificado | | |
 </details>
 
 <details>
