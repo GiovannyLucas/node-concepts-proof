@@ -4,7 +4,7 @@ import { AppError } from '../../../../shared/errors/AppError';
 import { HttpCodes } from '../../../../shared/errors/HttpCodes';
 import { CreateCityDTO } from '../../../cities/dtos/CreateCityDTO';
 import { CitiesRepositoryInMemory } from '../../../cities/repositories/in-memory/CitiesRepositoryInMemory';
-import { CreateClientDto } from '../../dtos/CreateClientDTO';
+import { CreateClientDTO } from '../../dtos/CreateClientDTO';
 import { ClientsRepositoryInMemory } from '../../repositories/in-memory/ClientsRepositoryInMemory';
 import { CreateClientUseCase } from './CreateClient.useCase';
 
@@ -30,7 +30,7 @@ describe('Create Client Use Case', () => {
 
     const { id: city_id } = await citiesRepositoryInMemory.create(cityToCreate);
 
-    const clientToCreate: CreateClientDto = {
+    const clientToCreate: CreateClientDTO = {
       full_name: 'Francisco José',
       gender: 'M',
       age: 20,
@@ -48,7 +48,7 @@ describe('Create Client Use Case', () => {
   it('should not be able create new client if the city dont exists', async () => {
     const randomCityId = uuid();
 
-    const clientToCreate: CreateClientDto = {
+    const clientToCreate: CreateClientDTO = {
       full_name: 'Francisco José',
       gender: 'M',
       age: 20,
@@ -71,12 +71,12 @@ describe('Create Client Use Case', () => {
 
     const { id: city_id } = await citiesRepositoryInMemory.create(cityToCreate);
 
-    const wrongWayToCreateClient: Partial<CreateClientDto> = {
+    const wrongWayToCreateClient: Partial<CreateClientDTO> = {
       city_living_id: city_id,
     };
 
     const tryCreateWrongClient = createClientUseCase.execute(
-      wrongWayToCreateClient as CreateClientDto,
+      wrongWayToCreateClient as CreateClientDTO,
     );
 
     await expect(tryCreateWrongClient).rejects.toBeInstanceOf(AppError);

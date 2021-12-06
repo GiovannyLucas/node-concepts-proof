@@ -1,14 +1,14 @@
 import { v4 as uuid } from 'uuid';
 
 import { IValidPaginationParams } from '../../../../shared/validators/paginationParams';
-import { CreateClientDto } from '../../dtos/CreateClientDTO';
+import { CreateClientDTO } from '../../dtos/CreateClientDTO';
 import { Client } from '../../infra/typeorm/entities/Client';
 import { IClientsRepository } from '../IClientsRepository';
 
 export class ClientsRepositoryInMemory implements IClientsRepository {
   clients: Client[] = [];
 
-  async create(clientToCreate: CreateClientDto): Promise<Client> {
+  async create(clientToCreate: CreateClientDTO): Promise<Client> {
     const { full_name, gender, born_date, age, city_living_id } =
       clientToCreate;
 

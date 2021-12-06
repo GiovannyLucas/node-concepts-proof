@@ -1,7 +1,7 @@
-export class CreateClientDto {
+export class CreateClientDTO {
   full_name: string;
   gender: 'M' | 'F';
   born_date: Date;
-  age: number;
+  age?: number;
   city_living_id: string;
 }

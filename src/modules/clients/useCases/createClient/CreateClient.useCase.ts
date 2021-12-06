@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
 import { HttpCodes } from '../../../../shared/errors/HttpCodes';
 import { ICitiesRepository } from '../../../cities/repositories/ICitiesRepository';
-import { CreateClientDto } from '../../dtos/CreateClientDTO';
+import { CreateClientDTO } from '../../dtos/CreateClientDTO';
 import { IClientsRepository } from '../../repositories/IClientsRepository';
 
 @injectable()
@@ -15,7 +15,7 @@ export class CreateClientUseCase {
     private clientsRepository: IClientsRepository,
   ) {}
 
-  public async execute(clientToCreate: CreateClientDto) {
+  public async execute(clientToCreate: CreateClientDTO) {
     const cityAlreadyExists = await this.citiesRepository.existsById(
       clientToCreate.city_living_id,
     );

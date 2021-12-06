@@ -55,7 +55,7 @@ export class CreateClients1638585460955 implements MigrationInterface {
             name: 'city-client-fk',
             referencedTableName: 'cities',
             referencedColumnNames: ['id'],
-            columnNames: ['city_id'],
+            columnNames: ['city_living_id'],
             onDelete: 'SET NULL',
             onUpdate: 'CASCADE',
           },

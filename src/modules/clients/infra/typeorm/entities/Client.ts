@@ -31,7 +31,7 @@ export class Client extends IBaseEntity {
   city_living_id: string;
 
   @ManyToOne(() => City, (city) => city.clients)
-  @JoinColumn({ name: 'city_id' })
+  @JoinColumn({ name: 'city_living_id' })
   city?: City;
 
   constructor() {

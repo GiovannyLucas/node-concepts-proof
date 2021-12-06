@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
 import { IValidPaginationParams } from '../../../../../shared/validators/paginationParams';
-import { CreateClientDto } from '../../../dtos/CreateClientDTO';
+import { CreateClientDTO } from '../../../dtos/CreateClientDTO';
 import { IClientsRepository } from '../../../repositories/IClientsRepository';
 import { Client } from '../entities/Client';
 
@@ -12,7 +12,7 @@ export class ClientsRepository implements IClientsRepository {
     this.repository = getRepository(Client);
   }
 
-  async create(clientToCreate: CreateClientDto): Promise<Client> {
+  async create(clientToCreate: CreateClientDTO): Promise<Client> {
     const { full_name, gender, born_date, age, city_living_id } =
       clientToCreate;
 
