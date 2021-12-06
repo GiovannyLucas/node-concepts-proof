@@ -21,7 +21,9 @@ describe('Find Clients Controller', () => {
   });
 
   it('should be able list the clients without filter params', async () => {
-    const { body } = await request(app).post('/api/v1/cities').send({
+    const {
+      body: { id: city_id },
+    } = await request(app).post('/api/v1/cities').send({
       name: 'São Miguel',
       state: 'Rio Grande do Norte',
     });
@@ -32,7 +34,7 @@ describe('Find Clients Controller', () => {
         full_name: 'Francisco José',
         gender: 'F',
         born_date: new Date(2000, 1, 1),
-        city_living_id: body.id,
+        city_living_id: city_id,
       });
 
     await request(app)
@@ -41,7 +43,7 @@ describe('Find Clients Controller', () => {
         full_name: 'José Francisco',
         gender: 'M',
         born_date: new Date(2000, 1, 1),
-        city_living_id: body.id,
+        city_living_id: city_id,
       });
 
     const response = await request(app)

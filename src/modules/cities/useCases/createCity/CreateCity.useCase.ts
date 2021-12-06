@@ -13,10 +13,10 @@ export class CreateCityUseCase {
   ) {}
 
   public async execute({ name, state }: CreateCityDTO) {
-    const CITY_ALREADY_EXISTS_IN_STATE =
+    const cityAlreadyExistsInState =
       await this.citiesRepository.existsByNameAndState(name, state);
 
-    if (CITY_ALREADY_EXISTS_IN_STATE) {
+    if (cityAlreadyExistsInState) {
       throw new AppError(
         'This city already exists in the state.',
         HttpCodes.CONFLICT,
@@ -26,7 +26,10 @@ export class CreateCityUseCase {
     const city = await this.citiesRepository.create({ name, state });
 
     if (!Object.keys(city).length) {
-      throw new AppError('Error to create the city', HttpCodes.INTERNAL_SERVER);
+      throw new AppError(
+        'Error to create the city.',
+        HttpCodes.INTERNAL_SERVER,
+      );
     }
 
     return city;
