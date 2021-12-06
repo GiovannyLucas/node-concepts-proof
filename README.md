@@ -28,8 +28,9 @@
 
   | FR (functional requirements) | NFR (non-functional requirements) | OK |
   |------------------------------|-----------------------------------|----------------|
-  | Deve ser possível cadastrar um novo cliente ao informar corretamente os dados pedidos | | |
-  | Cada cliente deverá ter uma cidade associada (cidade onde mora) | | |
+  | Deve ser possível cadastrar um novo cliente ao informar corretamente os dados pedidos | | ✅ |
+  | Cada cliente deverá ter uma cidade associada (cidade onde mora) | | ✅ |
+  | Não será possível cadastrar um cliente com data de nascimento maior que a data de hoje | | ✅ |
 </details>
 
 <details>
