@@ -48,8 +48,12 @@ export class ClientsRepositoryInMemory implements IClientsRepository {
     return client;
   }
 
-  update(id: string): Promise<Client> {
-    throw new Error('Method not implemented.');
+  async update(id: string, { name }: { name: string }): Promise<Client> {
+    const clientIndex = this.clients.findIndex((client) => client.id === id);
+
+    this.clients[clientIndex].full_name = name;
+
+    return this.clients[clientIndex];
   }
 
   async delete(id: string): Promise<boolean> {
