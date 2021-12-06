@@ -14,8 +14,11 @@ describe('Find Cites Controller', () => {
     await connection.runMigrations();
   });
 
-  afterAll(async () => {
+  beforeEach(async () => {
     await connection.query('DELETE FROM public.cities');
+  });
+
+  afterAll(async () => {
     await connection.close();
   });
 
