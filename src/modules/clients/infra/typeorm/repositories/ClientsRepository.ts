@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, ILike, Repository } from 'typeorm';
 
 import { IValidPaginationParams } from '../../../../../shared/validators/paginationParams';
 import { CreateClientDTO } from '../../../dtos/CreateClientDTO';
@@ -33,19 +33,17 @@ export class ClientsRepository implements IClientsRepository {
     { limit, offset }: IValidPaginationParams,
     { name }: { name?: string },
   ): Promise<{ clients: Client[]; total: number }> {
-    const nameCaseWhere = `CASE
-      WHEN (:name = '%%') THEN TRUE
-      ELSE full_name ILIKE :name
-    END`;
-
-    const [clients, total] = await this.repository
-      .createQueryBuilder('clients')
-      .leftJoinAndSelect('clients.city', 'city')
-      .where(nameCaseWhere, { name: `%${name || ''}%` })
-      .skip(offset)
-      .take(limit)
-      .orderBy({ full_name: 'ASC' })
-      .getManyAndCount();
+    const [clients, total] = await this.repository.findAndCount({
+      relations: ['city'],
+      where: {
+        full_name: ILike(`%${name || ''}%`),
+      },
+      skip: offset,
+      take: limit,
+      order: {
+        full_name: 'ASC',
+      },
+    });
 
     return { clients, total };
   }
