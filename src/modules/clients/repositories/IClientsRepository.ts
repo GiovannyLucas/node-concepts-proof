@@ -9,6 +9,6 @@ export interface IClientsRepository {
     filters: { name?: string },
   ): Promise<{ clients: Client[]; total: number }>;
   showById(id: string): Promise<Client | undefined>;
-  update(id: string, params: { name: string }): Promise<Client>;
+  update(id: string, clientsData: { name: string }): Promise<Client>;
   delete(id: string): Promise<boolean>;
 }
