@@ -1,16 +1,12 @@
-import {
-  IValidPaginationParams,
-  PaginationParamsValidate,
-} from 'shared/validators/paginationParams';
 import { getRepository, Repository } from 'typeorm';
 
+import { IValidPaginationParams } from '../../../../../shared/validators/paginationParams';
 import { CreateCityDTO } from '../../../dtos/CreateCityDTO';
-import { PaginationDTO } from '../../../dtos/PaginationDTO';
 import { ICitiesRepository } from '../../../repositories/ICitiesRepository';
 import { City } from '../entities/City';
 
 export class CitiesRepository implements ICitiesRepository {
-  private repository: Repository<City>;
+  private readonly repository: Repository<City>;
 
   constructor() {
     this.repository = getRepository(City);
@@ -53,12 +49,13 @@ export class CitiesRepository implements ICitiesRepository {
     return { cities, total };
   }
 
-  async showById(id: string): Promise<City | undefined> {
-    throw new Error('Method not implemented.');
-  }
+  async existsById(id: string): Promise<boolean> {
+    const [{ exists: cityAlreadyExists }] = await this.repository.query(
+      'SELECT EXISTS(SELECT 1 FROM public.cities WHERE id = $1)',
+      [id],
+    );
 
-  async findByState(state: string): Promise<City[]> {
-    throw new Error('Method not implemented.');
+    return cityAlreadyExists;
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {

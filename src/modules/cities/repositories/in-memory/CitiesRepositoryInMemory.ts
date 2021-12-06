@@ -1,11 +1,7 @@
-import {
-  IValidPaginationParams,
-  PaginationParamsValidate,
-} from 'shared/validators/paginationParams';
 import { v4 as uuid } from 'uuid';
 
+import { IValidPaginationParams } from '../../../../shared/validators/paginationParams';
 import { CreateCityDTO } from '../../dtos/CreateCityDTO';
-import { PaginationDTO } from '../../dtos/PaginationDTO';
 import { City } from '../../infra/typeorm/entities/City';
 import { ICitiesRepository } from '../ICitiesRepository';
 
@@ -41,12 +37,10 @@ export class CitiesRepositoryInMemory implements ICitiesRepository {
     return { cities, total: citiesFiltered.length };
   }
 
-  async showById(id: string): Promise<City | undefined> {
-    throw new Error('Method not implemented.');
-  }
+  async existsById(id: string): Promise<boolean> {
+    const cityAlreadyExists = this.cities.some((city) => city.id === id);
 
-  async findByState(state: string): Promise<City[]> {
-    throw new Error('Method not implemented.');
+    return cityAlreadyExists;
   }
 
   async existsByNameAndState(name: string, state: string): Promise<boolean> {
