@@ -10,15 +10,15 @@ import { UpdateClientUseCase } from './UpdateClient.useCase';
 export class UpdateClientController {
   public static async handle(request: Request, response: Response) {
     const { id } = request.params;
-    const { name } = request.body;
+    const { full_name: name } = request.body;
 
     const updateClientUseCase = container.resolve(UpdateClientUseCase);
 
     try {
       const schema = yup.object().shape({
-        name: yup
+        full_name: yup
           .string()
-          .required(errorMessages('name').required)
+          .required(errorMessages('full_name').required)
           .matches(/[A-Z]/g, 'Must be only letters'),
       });
 

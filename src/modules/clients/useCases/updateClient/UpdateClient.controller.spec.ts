@@ -45,7 +45,7 @@ describe('Update Client Controller', () => {
     const response = await request(app)
       .patch(`/api/v1/clients/${client_id}`)
       .send({
-        name: nameToUpdate,
+        full_name: nameToUpdate,
       });
 
     expect(response.status).toBe(HttpCodes.OK);
@@ -69,7 +69,7 @@ describe('Update Client Controller', () => {
     const response = await request(app)
       .patch(`/api/v1/clients/${randomClientId}`)
       .send({
-        name: nameToUpdate,
+        full_name: nameToUpdate,
       });
 
     expect(response.status).toBe(HttpCodes.NOT_FOUND);
