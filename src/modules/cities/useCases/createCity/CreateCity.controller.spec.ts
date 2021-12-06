@@ -16,11 +16,8 @@ describe('Create City Controller', () => {
     await connection.runMigrations();
   });
 
-  beforeEach(async () => {
-    await connection.query('DELETE FROM public.cities');
-  });
-
   afterAll(async () => {
+    await connection.dropDatabase();
     await connection.close();
   });
 
