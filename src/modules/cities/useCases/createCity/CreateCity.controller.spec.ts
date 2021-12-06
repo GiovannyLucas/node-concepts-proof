@@ -16,8 +16,11 @@ describe('Create City Controller', () => {
     await connection.runMigrations();
   });
 
+  beforeEach(async () => {
+    await connection.query('DELETE FROM public.cities');
+  });
+
   afterAll(async () => {
-    await connection.dropDatabase();
     await connection.close();
   });
 
@@ -46,5 +49,20 @@ describe('Create City Controller', () => {
     const response = await request(app).post('/api/v1/cities').send(sameCity);
 
     expect(response.status).toBe(HttpCodes.CONFLICT);
+  });
+
+  it('should not be able to create passing a wrong param type', async () => {
+    const ANOTHER_TYPE = 10;
+
+    const cityToCreate = {
+      name: faker.address.cityName(),
+      state: ANOTHER_TYPE,
+    };
+
+    const response = await request(app)
+      .post('/api/v1/cities')
+      .send(cityToCreate);
+
+    expect(response.status).toBe(HttpCodes.UNPROCESSABLE_ENTITY);
   });
 });
