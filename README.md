@@ -19,6 +19,6 @@
 
   | FR (functional requirements) | NFR (non-functional requirements) | OK |
   |------------------------------|-----------------------------------|----------------|
-  | Deve ser possível buscar uma cidade informando seu nome e/ou o estado a qual pertence | Pode utilizar parametros de query para filtrar | |
-  | Ao não informar dados para o filtro, poderão ser trazidas todas as cidades | Deverá conter paginação para controle | |
+  | Deve ser possível buscar uma cidade informando seu nome e/ou o estado a qual pertence | Pode utilizar parametros de query para filtrar | ✅ |
+  | Ao não informar dados para o filtro, poderão ser trazidas todas as cidades | Deverá conter paginação para controle | ✅ |
 </details>
