@@ -58,7 +58,9 @@ export class ClientsRepository implements IClientsRepository {
     throw new Error('Method not implemented.');
   }
 
-  delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<boolean> {
+    const deleted = await this.repository.delete({ id });
+
+    return !!deleted.affected;
   }
 }

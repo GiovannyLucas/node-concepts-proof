@@ -52,7 +52,11 @@ export class ClientsRepositoryInMemory implements IClientsRepository {
     throw new Error('Method not implemented.');
   }
 
-  delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<boolean> {
+    const clientIndex = this.clients.findIndex((client) => client.id === id);
+
+    this.clients.splice(clientIndex, 1);
+
+    return true;
   }
 }
