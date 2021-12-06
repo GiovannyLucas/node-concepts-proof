@@ -55,7 +55,7 @@ describe('Create City Use Case', () => {
 
     await expect(tryCreateWrongCity).rejects.toBeInstanceOf(AppError);
     await expect(tryCreateWrongCity).rejects.toEqual(
-      new AppError('Error to create the city', HttpCodes.INTERNAL_SERVER),
+      new AppError('Error to create the city.', HttpCodes.INTERNAL_SERVER),
     );
   });
 });
