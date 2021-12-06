@@ -63,6 +63,6 @@
 
   | FR (functional requirements) | NFR (non-functional requirements) | OK |
   |------------------------------|-----------------------------------|----------------|
-  | Deve ser possível alterar o nome do cliente | Utilizar parâmetros de rota | |
-  | Não será possível atualizar um cliente cujo não seja identificado | | |
+  | Deve ser possível alterar o nome do cliente | Utilizar parâmetros de rota | ✅ |
+  | Não será possível atualizar um cliente cujo não seja identificado | | ✅ |
 </details>
