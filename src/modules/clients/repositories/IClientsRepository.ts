@@ -6,10 +6,9 @@ export interface IClientsRepository {
   create(clientToCreate: CreateClientDTO): Promise<Client>;
   find(
     pagination: IValidPaginationParams,
-    filters?: { name?: string },
+    filters: { name?: string },
   ): Promise<{ clients: Client[]; total: number }>;
   showById(id: string): Promise<Client | undefined>;
-  // adicionar parametro igual ao de filtro
-  update(id: string): Promise<Client>;
+  update(id: string, params: { name: string }): Promise<Client>;
   delete(id: string): Promise<boolean>;
 }

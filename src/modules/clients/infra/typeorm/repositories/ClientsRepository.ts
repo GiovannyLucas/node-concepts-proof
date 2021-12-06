@@ -54,8 +54,15 @@ export class ClientsRepository implements IClientsRepository {
     return client;
   }
 
-  update(id: string): Promise<Client> {
-    throw new Error('Method not implemented.');
+  async update(id: string, { name }: { name: string }): Promise<Client> {
+    const client = this.repository.create({
+      id,
+      full_name: name,
+    });
+
+    await this.repository.save(client);
+
+    return client;
   }
 
   async delete(id: string): Promise<boolean> {
