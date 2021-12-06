@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { citiesRouter } from './cities.routes';
-import { clientsRouter } from './client.routes';
+import { clientsRouter } from './clients.routes';
 
 const router = Router();
 

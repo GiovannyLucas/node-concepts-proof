@@ -48,8 +48,10 @@ export class ClientsRepository implements IClientsRepository {
     return { clients, total };
   }
 
-  showById(id: string): Promise<Client | undefined> {
-    throw new Error('Method not implemented.');
+  async showById(id: string): Promise<Client | undefined> {
+    const client = await this.repository.findOne({ id });
+
+    return client;
   }
 
   update(id: string): Promise<Client> {

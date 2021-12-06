@@ -42,8 +42,10 @@ export class ClientsRepositoryInMemory implements IClientsRepository {
     return { clients, total: clientsFiltered.length };
   }
 
-  showById(id: string): Promise<Client | undefined> {
-    throw new Error('Method not implemented.');
+  async showById(id: string): Promise<Client | undefined> {
+    const client = this.clients.find((client) => client.id === id);
+
+    return client;
   }
 
   update(id: string): Promise<Client> {

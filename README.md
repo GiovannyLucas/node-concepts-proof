@@ -46,7 +46,7 @@
 
   | FR (functional requirements) | NFR (non-functional requirements) | OK |
   |------------------------------|-----------------------------------|----------------|
-  | Deve ser possível buscar um cliente específico informando seu identificador | Utilizar parâmetros de rota | |
+  | Deve ser possível buscar um cliente específico informando seu identificador | Utilizar parâmetros de rota | ✅ |
 </details>
 
 <details>
