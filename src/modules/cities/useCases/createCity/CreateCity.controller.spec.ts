@@ -49,11 +49,8 @@ describe('Create City Controller', () => {
   });
 
   it('should not be able to create passing a wrong param type', async () => {
-    const ANOTHER_TYPE = 10;
-
     const cityToCreate = {
       name: faker.address.cityName(),
-      state: ANOTHER_TYPE,
     };
 
     const response = await request(app)
