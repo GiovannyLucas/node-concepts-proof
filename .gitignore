@@ -12,4 +12,4 @@ coverage
 
 # locals
 *.lock
-.log
+*.log

@@ -3,7 +3,9 @@ import 'reflect-metadata';
 import 'express-async-errors';
 import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
 
+import swaggerFile from '../../../docs/swagger.json';
 import { AppError } from '../../errors/AppError';
 import { HttpCodes } from '../../errors/HttpCodes';
 import createConnection from '../typeorm';
@@ -19,6 +21,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/v1', router);
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use((error: Error, _: Request, response: Response, __: NextFunction) => {
   if (error instanceof AppError) {

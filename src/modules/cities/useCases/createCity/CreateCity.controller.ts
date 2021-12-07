@@ -15,14 +15,8 @@ export class CreateCityController {
 
     try {
       const schema = yup.object().shape({
-        name: yup
-          .string()
-          .required(errorMessages('name').required)
-          .matches(/[A-Z]/g, 'Must be only letters'),
-        state: yup
-          .string()
-          .required(errorMessages('state').required)
-          .matches(/[A-Z]/g, 'Must be only letters'),
+        name: yup.string().required(errorMessages('name').required),
+        state: yup.string().required(errorMessages('state').required),
       });
 
       await schema.validate(request.body);

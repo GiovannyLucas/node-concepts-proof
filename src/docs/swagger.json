@@ -1,0 +1,464 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentation Test Compass UOL",
+    "description": "This is an API Test Compass UOL",
+    "version": "1.0.0",
+    "contact": {
+      "email": "giovannylucax@gmail.com"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api/v1",
+      "description": "API development server"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/cities": {
+      "post": {
+        "summary": "Creates a new city",
+        "tags": [
+          "Cities"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "name of the city to create",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "body",
+            "description": "state of a city to filter create",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "state": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A new city was created."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "422": {
+            "description": "Something wrong with the params."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a list of the cities",
+        "description": "Get a list of the cities filtering by name, state and paginating they.",
+        "tags": [
+          "Cities"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page to indicate what page you want",
+            "required": false,
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "maximum number of results to return",
+            "required": false,
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name of a city to filter by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "state of a city to filter by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of cities.",
+            "schema": {
+              "type": "array"
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/clients": {
+      "post": {
+        "summary": "Creates a new client",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "full_name",
+            "in": "body",
+            "description": "full_name of the client to create",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gender",
+            "in": "body",
+            "description": "gender of the client to create (F | M)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "born_date",
+            "in": "body",
+            "description": "born date of the client to create",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city_living_id",
+            "in": "body",
+            "description": "city living id (uuid) of the client to create",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "full_name": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "gender": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "born_date": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "city_living_id": {
+                    "type": "string",
+                    "description": "uuid",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A new client was created."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "404": {
+            "description": "The city id passed was not found."
+          },
+          "422": {
+            "description": "Something wrong with the params."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a list of clients",
+        "description": "Get a list of clients filtering by name and paginating they.",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page to indicate what page you want.",
+            "required": false,
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "maximum number of results to return",
+            "required": false,
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name of the client to filter by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of clients."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/clients/{id}": {
+      "get": {
+        "summary": "Get a specific client by Id",
+        "description": "Get a specific client by Id (uuid)",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "client Id (uuid)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A specific client."
+          },
+          "404": {
+            "description": "Client not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update client",
+        "description": "Update full name client",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "client Id (uuid)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "full_name",
+            "in": "body",
+            "description": "Full name of the client",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "full_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A updated client."
+          },
+          "404": {
+            "description": "Client not found."
+          },
+          "422": {
+            "description": "Something wrong with the params."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete client",
+        "description": "Delete a client by Id (uuid)",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "client Id (uuid)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A client deleted."
+          },
+          "404": {
+            "description": "Client not found"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "City": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "timestamp"
+          },
+          "updated_at": {
+            "type": "timestamp"
+          },
+          "version": {
+            "type": "integer"
+          }
+        }
+      },
+      "Client": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "city_living_id": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "born_date": {
+            "type": "date"
+          },
+          "age": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "timestamp"
+          },
+          "updated_at": {
+            "type": "timestamp"
+          },
+          "version": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
