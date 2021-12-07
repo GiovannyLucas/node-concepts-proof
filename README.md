@@ -1,6 +1,11 @@
 # Test Node Compass UOL
 > The code to a node API to the Compass Interview.
 
+## Endpoints 📡
+- Inicial: `http://localhost:4000/api/v1`
+
+- Documentação Swagger: `http://localhost:4000/api/v1/docs`
+
 ## How to run 🚀
 
 - Para construir as imagens docker da API e do banco
@@ -20,19 +25,25 @@
 ```sh
   yarn test
 ```
+
+<br>
+
+Alertas 🚧
+
+Para executar o servidor manual (sem o docker), adeque as variáveis de ambiente para a sua máquina no arquivo `.env`.
+
 Todos os comandos executados com YARN são possíveis de executar utilizando o NPM.
 
 <br>
 
-> Depois dessas etapas, a API será acessível em **localhost**, na porta 4000.
-<br>
+> Depois dessas etapas, a API será acessível em **localhost**, na porta **4000**.
 <br>
 
-## Database schema
+## Database schema 💾
 
 <img src=".github/assets/database-schema.png" alt="DB Schema">
 
-## Requirements
+## Requirements 🔗
 
 <details>
   <summary>[1-2]: Cadastrar cidade</summary>
