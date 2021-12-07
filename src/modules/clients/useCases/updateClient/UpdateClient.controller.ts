@@ -16,10 +16,7 @@ export class UpdateClientController {
 
     try {
       const schema = yup.object().shape({
-        full_name: yup
-          .string()
-          .required(errorMessages('full_name').required)
-          .matches(/[A-Z]/g, 'Must be only letters'),
+        full_name: yup.string().required(errorMessages('full_name').required),
       });
 
       await schema.validate(request.body);
