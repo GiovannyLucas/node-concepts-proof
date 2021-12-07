@@ -1,0 +1,9 @@
+export enum HttpCodes {
+  CREATED = 201,
+  OK = 200,
+  INTERNAL_SERVER = 500,
+  BAD_REQUEST = 400,
+  NOT_FOUND = 404,
+  CONFLICT = 409,
+  UNPROCESSABLE_ENTITY = 422,
+}

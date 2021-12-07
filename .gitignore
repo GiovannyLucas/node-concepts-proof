@@ -1,0 +1,15 @@
+# dependencies
+node_modules
+
+# build
+dist
+
+# environments
+# *.env
+
+# tests
+coverage
+
+# locals
+*.lock
+*.log
