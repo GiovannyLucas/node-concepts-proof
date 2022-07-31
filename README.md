@@ -1,5 +1,5 @@
-# Test Node Compass UOL
-> The code to a node API to the Compass Interview.
+# Concept proof Node.js with Express
+> Using Clean Architecture, TDD and best practices.
 
 ## Endpoints 📡
 - Inicial: `http://localhost:4000/api/v1`
