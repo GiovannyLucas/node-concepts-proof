@@ -1,4 +1,4 @@
-# Concept proof Node.js with Express
+# Concepts proof Node.js with Express
 > Using Clean Architecture, TDD and best practices.
 
 ## Endpoints 📡
